@@ -79,6 +79,25 @@
   text-align: center;
 }
 
+.surprise-button {
+  padding: 9px 22px;
+  border: 1px solid var(--accent-border);
+  border-radius: 100px;
+  background: var(--accent-surface);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  margin-bottom: 8px;
+}
+
+.surprise-button:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
+
 .add-custom-button {
   padding: 9px 20px;
   border: 1px dashed var(--border-strong);

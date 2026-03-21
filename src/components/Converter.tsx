@@ -64,6 +64,50 @@ export function Converter() {
     if (toId === id) setToId(categoryUnits[1]?.id ?? '');
   };
 
+  const handleSurprise = () => {
+    if (categoryUnits.length < 2) return;
+
+    // Build pairs scored by how "interesting" the ratio is
+    // Sweet spot: ratio between 2 and 100,000 (i.e. 1–5 orders of magnitude)
+    const pairs: { a: Unit; b: Unit; score: number }[] = [];
+    for (let i = 0; i < categoryUnits.length; i++) {
+      for (let j = i + 1; j < categoryUnits.length; j++) {
+        const a = categoryUnits[i];
+        const b = categoryUnits[j];
+        const ratio = Math.max(a.baseUnitValue, b.baseUnitValue) /
+                      Math.min(a.baseUnitValue, b.baseUnitValue);
+        const logRatio = Math.log10(ratio);
+        // Ideal: 0.3 to 5 orders of magnitude (roughly 2x to 100,000x)
+        if (logRatio >= 0.3 && logRatio <= 5) {
+          // Score peaks around 2–3 orders of magnitude
+          const score = 1 / (1 + Math.abs(logRatio - 2.5));
+          pairs.push({ a, b, score });
+        }
+      }
+    }
+
+    if (pairs.length === 0) {
+      // Fallback: just pick two random different units
+      const shuffled = [...categoryUnits].sort(() => Math.random() - 0.5);
+      setFromId(shuffled[0].id);
+      setToId(shuffled[1].id);
+    } else {
+      // Weighted random: pick from top candidates
+      const sorted = pairs.sort((a, b) => b.score - a.score);
+      const topN = sorted.slice(0, Math.max(10, Math.floor(sorted.length * 0.3)));
+      const pick = topN[Math.floor(Math.random() * topN.length)];
+      // Randomly assign from/to direction
+      if (Math.random() < 0.5) {
+        setFromId(pick.a.id);
+        setToId(pick.b.id);
+      } else {
+        setFromId(pick.b.id);
+        setToId(pick.a.id);
+      }
+    }
+    setInputValue('1');
+  };
+
   const customInCategory = customUnits.filter((u) => u.category === category);
 
   return (
@@ -110,6 +154,9 @@ export function Converter() {
       </div>
 
       <div className="custom-section">
+        <button className="surprise-button" onClick={handleSurprise}>
+          Surprise me
+        </button>
         <button className="add-custom-button" onClick={() => setShowModal(true)}>
           + Create custom unit
         </button>
