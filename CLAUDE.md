@@ -40,32 +40,33 @@ Each unit has:
 ## Implementation Plan
 
 ### Phase 1: Project Setup
-- [ ] Initialize Vite + React + TypeScript project
-- [ ] Configure for GitHub Pages (base path, deploy script)
-- [ ] Set up project structure
+- [x] Initialize Vite + React + TypeScript project
+- [x] Configure for GitHub Pages (base path, deploy script)
+- [x] Set up project structure
 
 ### Phase 2: Core Logic & Data
-- [ ] Define TypeScript types for units and categories
-- [ ] Create unit data with silly conversions (elephants, bananas, etc.)
-- [ ] Build conversion engine (convert between any two units in same category)
+- [x] Define TypeScript types for units and categories
+- [x] Create unit data with silly conversions (elephants, bananas, etc.)
+- [x] Build conversion engine (convert between any two units in same category)
 
 ### Phase 3: UI — Main Converter
-- [ ] App layout with gradient background and playful typography
-- [ ] Unit picker (category tabs + unit dropdowns)
-- [ ] Number input with live conversion result
-- [ ] Swap button to flip units
-- [ ] Copy-to-clipboard on result
-- [ ] Fun result display ("That's 12.4 elephants!")
+- [x] App layout with gradient background and playful typography
+- [x] Unit picker (category tabs + searchable unit dropdowns)
+- [x] Number input with live conversion result
+- [x] Swap button to flip units
+- [x] Copy-to-clipboard on result
+- [x] Fun result display ("That's 12.4 elephants!")
 
 ### Phase 4: Custom Units
-- [ ] "Create Custom Unit" modal/form
-- [ ] Save/load custom units from localStorage
-- [ ] Delete custom units
+- [x] "Create Custom Unit" modal/form
+- [x] Save/load custom units from localStorage
+- [x] Delete custom units
 
 ### Phase 5: Polish & Deploy
 - [ ] Animations (input transitions, result reveal)
-- [ ] Mobile responsive design
-- [ ] Deploy to GitHub Pages
+- [x] Responsive design (horizontal panels on wide screens, vertical stacking on narrow)
+- [x] Dark mode / theme switching
+- [x] Deploy to GitHub Pages (via GitHub Actions deploy.yml)
 - [ ] Final README update with live link
 
 ## Design Direction

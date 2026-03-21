@@ -20,12 +20,23 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px 20px;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease, padding 0.4s ease;
 }
 
 .unit-picker-body:focus-within {
   border-color: var(--accent-border);
   background: var(--surface-active);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+  animation: focus-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes focus-glow {
+  from {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+  }
+  to {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
 }
 
 .unit-picker-value {
@@ -75,4 +86,21 @@
   font-size: 0.72rem;
   color: var(--text-faint);
   padding-left: 2px;
+}
+
+/* ── Invalid input shake ─────────────────── */
+
+.unit-picker-body.shake {
+  animation: shake 0.4s ease;
+  border-color: #f87171;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-6px); }
+  30% { transform: translateX(5px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+  90% { transform: translateX(1px); }
 }

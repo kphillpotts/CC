@@ -15,6 +15,7 @@ export function Converter() {
   const [fromId, setFromId] = useState<string>('kg');
   const [toId, setToId] = useState<string>('elephant');
   const [showModal, setShowModal] = useState(false);
+  const [swapCount, setSwapCount] = useState(0);
   const [customUnits, setCustomUnits] = useLocalStorage<Unit[]>('curious-converter-custom-units', []);
 
   const allUnits = useMemo(
@@ -46,11 +47,10 @@ export function Converter() {
   };
 
   const handleSwap = () => {
-    const prevInput = inputValue;
     setFromId(toUnit.id);
     setToId(fromUnit.id);
     setInputValue(formatResult(result));
-    void prevInput;
+    setSwapCount((c) => c + 1);
   };
 
   const handleAddCustomUnit = (unit: Unit) => {
@@ -84,7 +84,7 @@ export function Converter() {
 
           <div className="swap-row">
             <div className="swap-line" />
-            <button className="swap-button" onClick={handleSwap} title="Swap units">
+            <button className="swap-button" onClick={handleSwap} title="Swap units" style={{ transform: `rotate(${swapCount * 180}deg)` }}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M4 2L4 14M4 14L1 11M4 14L7 11M12 14L12 2M12 2L9 5M12 2L15 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -97,7 +97,7 @@ export function Converter() {
             selected={toUnit}
             onChange={(u) => setToId(u.id)}
             label="To"
-            value={numericValue ? formatResult(result) : ''}
+            numericValue={result}
           />
         </div>
 

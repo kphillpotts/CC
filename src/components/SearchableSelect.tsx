@@ -62,49 +62,51 @@ export function SearchableSelect({ units, selected, onChange }: Props) {
         type="button"
       >
         <span className="trigger-name">{selected.name}{selected.isCustom ? ' *' : ''}</span>
-        <svg className="trigger-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none">
+        <svg className={`trigger-chevron ${open ? 'open' : ''}`} width="10" height="10" viewBox="0 0 10 10" fill="none">
           <path d="M2 3.5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" fill="none"/>
         </svg>
       </button>
 
-      {open && (
-        <div className="searchable-dropdown">
-          <div className="search-input-wrapper">
-            <svg className="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
-              <path d="M9.5 9.5L13 13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-            </svg>
-            <input
-              ref={inputRef}
-              className="search-input"
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Search units..."
-            />
-          </div>
-          <div className="search-results" ref={listRef}>
-            {filtered.length === 0 ? (
-              <div className="search-empty">No units found</div>
-            ) : (
-              filtered.map((unit) => (
-                <button
-                  key={unit.id}
-                  className={`search-option ${unit.id === selected.id ? 'active' : ''}`}
-                  onClick={() => handleSelect(unit)}
-                  type="button"
-                >
-                  <span className="option-name">{unit.name}{unit.isCustom ? ' *' : ''}</span>
-                  {unit.description && (
-                    <span className="option-desc">{unit.description}</span>
-                  )}
-                </button>
-              ))
-            )}
-          </div>
-        </div>
-      )}
+      <div className={`searchable-dropdown ${open ? 'open' : ''}`}>
+        {open && (
+          <>
+            <div className="search-input-wrapper">
+              <svg className="search-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <circle cx="6" cy="6" r="4.5" stroke="currentColor" strokeWidth="1.2"/>
+                <path d="M9.5 9.5L13 13" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+              </svg>
+              <input
+                ref={inputRef}
+                className="search-input"
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Search units..."
+              />
+            </div>
+            <div className="search-results" ref={listRef}>
+              {filtered.length === 0 ? (
+                <div className="search-empty">No units found</div>
+              ) : (
+                filtered.map((unit) => (
+                  <button
+                    key={unit.id}
+                    className={`search-option ${unit.id === selected.id ? 'active' : ''}`}
+                    onClick={() => handleSelect(unit)}
+                    type="button"
+                  >
+                    <span className="option-name">{unit.name}{unit.isCustom ? ' *' : ''}</span>
+                    {unit.description && (
+                      <span className="option-desc">{unit.description}</span>
+                    )}
+                  </button>
+                ))
+              )}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
