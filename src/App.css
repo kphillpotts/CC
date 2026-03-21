@@ -1,0 +1,48 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  text-align: center;
+  padding: 56px 20px 36px;
+}
+
+.app-title {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #f4f0ff;
+  margin: 0 0 10px;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.app-subtitle {
+  font-size: 1.05rem;
+  color: rgba(226, 224, 234, 0.5);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 48px 20px 28px;
+  margin-top: auto;
+  color: rgba(226, 224, 234, 0.2);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 40px 16px 28px;
+  }
+  .app-title {
+    font-size: 1.9rem;
+  }
+  .app-subtitle {
+    font-size: 0.9rem;
+  }
+}
