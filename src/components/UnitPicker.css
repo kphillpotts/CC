@@ -88,6 +88,11 @@
   background-position: right 10px center;
 }
 
+.unit-picker-select option {
+  background: var(--modal-bg);
+  color: var(--text-primary);
+}
+
 .unit-picker-select:hover {
   background-color: var(--surface-hover);
   border-color: var(--border-hover);
