@@ -1,42 +1,80 @@
-.result-display {
+.result-cards {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px 20px;
-  background: rgba(139, 92, 246, 0.08);
-  border: 1px solid rgba(139, 92, 246, 0.12);
-  border-radius: 12px;
-  margin-top: 8px;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
   animation: fadeIn 0.25s ease;
 }
 
-.result-summary {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: rgba(226, 224, 234, 0.7);
-  line-height: 1.4;
-  min-width: 0;
-  overflow-wrap: break-word;
+.result-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  transition: all 0.15s ease;
 }
 
-.copy-button {
-  flex-shrink: 0;
-  padding: 6px 16px;
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  border-radius: 8px;
+.result-card--natural {
   background: rgba(139, 92, 246, 0.1);
-  color: #c4b5fd;
-  font-size: 0.78rem;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.result-card--natural .result-card-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ddd6fe;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.result-card--precise {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result-card--precise .result-card-text {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(226, 224, 234, 0.4);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  padding: 5px 14px;
+  border-radius: 7px;
+  font-size: 0.72rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
   letter-spacing: 0.02em;
+  margin-top: 1px;
 }
 
-.copy-button:hover {
-  background: rgba(139, 92, 246, 0.2);
-  border-color: rgba(139, 92, 246, 0.35);
+.result-card--natural .copy-btn {
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  background: rgba(139, 92, 246, 0.12);
+  color: #c4b5fd;
+}
+
+.result-card--natural .copy-btn:hover {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.result-card--precise .copy-btn {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(226, 224, 234, 0.35);
+}
+
+.result-card--precise .copy-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(226, 224, 234, 0.5);
 }
 
 @keyframes fadeIn {
