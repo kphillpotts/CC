@@ -9,11 +9,54 @@ import { ResultDisplay } from './ResultDisplay';
 import { CustomUnitModal } from './CustomUnitModal';
 import './Converter.css';
 
+const ALL_CATEGORIES: Category[] = ['weight', 'length', 'volume', 'area', 'time', 'speed', 'data'];
+
+function pickInterestingPair(units: Unit[]): { fromId: string; toId: string } {
+  if (units.length < 2) return { fromId: units[0]?.id ?? '', toId: units[1]?.id ?? '' };
+
+  const pairs: { a: Unit; b: Unit; score: number }[] = [];
+  for (let i = 0; i < units.length; i++) {
+    for (let j = i + 1; j < units.length; j++) {
+      const a = units[i];
+      const b = units[j];
+      const ratio = Math.max(a.baseUnitValue, b.baseUnitValue) /
+                    Math.min(a.baseUnitValue, b.baseUnitValue);
+      const logRatio = Math.log10(ratio);
+      if (logRatio >= 0.3 && logRatio <= 5) {
+        const score = 1 / (1 + Math.abs(logRatio - 2.5));
+        pairs.push({ a, b, score });
+      }
+    }
+  }
+
+  if (pairs.length === 0) {
+    const shuffled = [...units].sort(() => Math.random() - 0.5);
+    const [x, y] = shuffled[0].baseUnitValue >= shuffled[1].baseUnitValue
+      ? [shuffled[0], shuffled[1]] : [shuffled[1], shuffled[0]];
+    return { fromId: x.id, toId: y.id };
+  }
+
+  const sorted = pairs.sort((x, y) => y.score - x.score);
+  const topN = sorted.slice(0, Math.max(10, Math.floor(sorted.length * 0.3)));
+  const pick = topN[Math.floor(Math.random() * topN.length)];
+  // From = bigger unit, To = smaller unit (reads better: "1 Kilogram = 1,000 Grams")
+  const [from, to] = pick.a.baseUnitValue >= pick.b.baseUnitValue
+    ? [pick.a, pick.b] : [pick.b, pick.a];
+  return { fromId: from.id, toId: to.id };
+}
+
+// Pick random initial category and units
+const initialCategory = ALL_CATEGORIES[Math.floor(Math.random() * ALL_CATEGORIES.length)];
+const initialUnits = BUILT_IN_UNITS
+  .filter((u) => u.category === initialCategory)
+  .sort((a, b) => a.name.localeCompare(b.name));
+const initialPair = pickInterestingPair(initialUnits);
+
 export function Converter() {
-  const [category, setCategory] = useState<Category>('weight');
+  const [category, setCategory] = useState<Category>(initialCategory);
   const [inputValue, setInputValue] = useState<string>('1');
-  const [fromId, setFromId] = useState<string>('kg');
-  const [toId, setToId] = useState<string>('elephant');
+  const [fromId, setFromId] = useState<string>(initialPair.fromId);
+  const [toId, setToId] = useState<string>(initialPair.toId);
   const [showModal, setShowModal] = useState(false);
   const [swapCount, setSwapCount] = useState(0);
   const [customUnits, setCustomUnits] = useLocalStorage<Unit[]>('curious-converter-custom-units', []);
@@ -41,8 +84,9 @@ export function Converter() {
     const units = allUnits
       .filter((u) => u.category === cat)
       .sort((a, b) => a.name.localeCompare(b.name));
-    setFromId(units[0]?.id ?? '');
-    setToId(units[1]?.id ?? '');
+    const pair = pickInterestingPair(units);
+    setFromId(pair.fromId);
+    setToId(pair.toId);
     setInputValue('1');
   };
 
@@ -66,45 +110,9 @@ export function Converter() {
 
   const handleSurprise = () => {
     if (categoryUnits.length < 2) return;
-
-    // Build pairs scored by how "interesting" the ratio is
-    // Sweet spot: ratio between 2 and 100,000 (i.e. 1–5 orders of magnitude)
-    const pairs: { a: Unit; b: Unit; score: number }[] = [];
-    for (let i = 0; i < categoryUnits.length; i++) {
-      for (let j = i + 1; j < categoryUnits.length; j++) {
-        const a = categoryUnits[i];
-        const b = categoryUnits[j];
-        const ratio = Math.max(a.baseUnitValue, b.baseUnitValue) /
-                      Math.min(a.baseUnitValue, b.baseUnitValue);
-        const logRatio = Math.log10(ratio);
-        // Ideal: 0.3 to 5 orders of magnitude (roughly 2x to 100,000x)
-        if (logRatio >= 0.3 && logRatio <= 5) {
-          // Score peaks around 2–3 orders of magnitude
-          const score = 1 / (1 + Math.abs(logRatio - 2.5));
-          pairs.push({ a, b, score });
-        }
-      }
-    }
-
-    if (pairs.length === 0) {
-      // Fallback: just pick two random different units
-      const shuffled = [...categoryUnits].sort(() => Math.random() - 0.5);
-      setFromId(shuffled[0].id);
-      setToId(shuffled[1].id);
-    } else {
-      // Weighted random: pick from top candidates
-      const sorted = pairs.sort((a, b) => b.score - a.score);
-      const topN = sorted.slice(0, Math.max(10, Math.floor(sorted.length * 0.3)));
-      const pick = topN[Math.floor(Math.random() * topN.length)];
-      // Randomly assign from/to direction
-      if (Math.random() < 0.5) {
-        setFromId(pick.a.id);
-        setToId(pick.b.id);
-      } else {
-        setFromId(pick.b.id);
-        setToId(pick.a.id);
-      }
-    }
+    const pair = pickInterestingPair(categoryUnits);
+    setFromId(pair.fromId);
+    setToId(pair.toId);
     setInputValue('1');
   };
 
