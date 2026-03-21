@@ -37,6 +37,12 @@ const CATEGORY_VERBS: Record<Category, string[]> = {
     "That's roughly the speed of",
     'Imagine racing alongside',
   ],
+  data: [
+    "That's about the same storage as",
+    'Picture fitting that into',
+    "That's roughly the size of",
+    'Imagine downloading',
+  ],
 };
 
 function friendlyNumber(value: number): string {

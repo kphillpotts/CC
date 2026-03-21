@@ -325,4 +325,70 @@ export const BUILT_IN_UNITS: Unit[] = [
   { id: 'concorde', name: 'Concorde', emoji: '', category: 'speed', baseUnitValue: 604, isCustom: false, description: '~2,180 km/h / Mach 2' },
   { id: 'iss-orbit', name: 'ISS (orbital speed)', emoji: '', category: 'speed', baseUnitValue: 7660, isCustom: false, description: '~27,576 km/h' },
   { id: 'speed-of-light', name: 'Speed of Light', emoji: '', category: 'speed', baseUnitValue: 299792458, isCustom: false, description: '~299,792 km/s' },
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  DATA  (base unit: bytes)
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  // -- Standard --
+  { id: 'bit', name: 'Bit', emoji: '', category: 'data', baseUnitValue: 0.125, isCustom: false, description: '1/8 of a byte' },
+  { id: 'nibble', name: 'Nibble', emoji: '', category: 'data', baseUnitValue: 0.5, isCustom: false, description: '4 bits' },
+  { id: 'byte', name: 'Byte', emoji: '', category: 'data', baseUnitValue: 1, isCustom: false, description: '8 bits' },
+  { id: 'kilobyte', name: 'Kilobyte (KB)', emoji: '', category: 'data', baseUnitValue: 1024, isCustom: false, description: '1,024 bytes' },
+  { id: 'megabyte', name: 'Megabyte (MB)', emoji: '', category: 'data', baseUnitValue: 1048576, isCustom: false, description: '1,024 KB' },
+  { id: 'gigabyte', name: 'Gigabyte (GB)', emoji: '', category: 'data', baseUnitValue: 1073741824, isCustom: false, description: '1,024 MB' },
+  { id: 'terabyte', name: 'Terabyte (TB)', emoji: '', category: 'data', baseUnitValue: 1099511627776, isCustom: false, description: '1,024 GB' },
+  { id: 'petabyte', name: 'Petabyte (PB)', emoji: '', category: 'data', baseUnitValue: 1125899906842624, isCustom: false, description: '1,024 TB' },
+
+  // -- Retro storage --
+  { id: 'punch-card', name: 'Punch Card', emoji: '', category: 'data', baseUnitValue: 80, isCustom: false, description: '~80 bytes (80 columns)' },
+  { id: 'floppy-8in', name: '8" Floppy Disk', emoji: '', category: 'data', baseUnitValue: 81920, isCustom: false, description: '~80 KB — the OG floppy' },
+  { id: 'floppy-525', name: '5.25" Floppy Disk', emoji: '', category: 'data', baseUnitValue: 368640, isCustom: false, description: '~360 KB' },
+  { id: 'floppy-35', name: '3.5" Floppy Disk', emoji: '', category: 'data', baseUnitValue: 1474560, isCustom: false, description: '~1.44 MB — the classic' },
+  { id: 'zip-disk', name: 'Zip Disk', emoji: '', category: 'data', baseUnitValue: 104857600, isCustom: false, description: '~100 MB' },
+  { id: 'cd-rom', name: 'CD-ROM', emoji: '', category: 'data', baseUnitValue: 737280000, isCustom: false, description: '~700 MB' },
+  { id: 'dvd', name: 'DVD', emoji: '', category: 'data', baseUnitValue: 4700000000, isCustom: false, description: '~4.7 GB' },
+  { id: 'blu-ray', name: 'Blu-ray Disc', emoji: '', category: 'data', baseUnitValue: 25000000000, isCustom: false, description: '~25 GB' },
+  { id: 'minidisc', name: 'MiniDisc', emoji: '', category: 'data', baseUnitValue: 177000000, isCustom: false, description: '~177 MB (data mode)' },
+  { id: 'jazz-drive', name: 'Jaz Drive', emoji: '', category: 'data', baseUnitValue: 1073741824, isCustom: false, description: '~1 GB — Iomega\'s dream' },
+  { id: 'laserdisc', name: 'LaserDisc', emoji: '', category: 'data', baseUnitValue: 600000000, isCustom: false, description: '~600 MB per side' },
+
+  // -- Text & documents --
+  { id: 'tweet-old', name: 'Old Tweet (140 chars)', emoji: '', category: 'data', baseUnitValue: 140, isCustom: false, description: '~140 bytes (ASCII)' },
+  { id: 'tweet-new', name: 'Modern Tweet (280 chars)', emoji: '', category: 'data', baseUnitValue: 280, isCustom: false, description: '~280 bytes (ASCII)' },
+  { id: 'text-message', name: 'SMS Text Message', emoji: '', category: 'data', baseUnitValue: 160, isCustom: false, description: '~160 bytes (GSM)' },
+  { id: 'page-of-text', name: 'Page of Text', emoji: '', category: 'data', baseUnitValue: 2000, isCustom: false, description: '~2 KB (~250 words)' },
+  { id: 'short-email', name: 'Short Email', emoji: '', category: 'data', baseUnitValue: 5000, isCustom: false, description: '~5 KB' },
+  { id: 'novel-avg', name: 'Average Novel', emoji: '', category: 'data', baseUnitValue: 500000, isCustom: false, description: '~500 KB (~80,000 words)' },
+  { id: 'war-and-peace', name: 'War and Peace', emoji: '', category: 'data', baseUnitValue: 3200000, isCustom: false, description: '~3.2 MB (~580,000 words)' },
+  { id: 'encyclopedia-britannica', name: 'Encyclopedia Britannica', emoji: '', category: 'data', baseUnitValue: 300000000, isCustom: false, description: '~300 MB (text only)' },
+  { id: 'wikipedia-text', name: 'All of Wikipedia (text)', emoji: '', category: 'data', baseUnitValue: 22000000000, isCustom: false, description: '~22 GB (English, text only)' },
+  { id: 'library-of-congress', name: 'Library of Congress (text)', emoji: '', category: 'data', baseUnitValue: 15000000000000, isCustom: false, description: '~15 TB of text' },
+
+  // -- Photos & media --
+  { id: 'nokia-photo', name: 'Nokia 3310 Photo', emoji: '', category: 'data', baseUnitValue: 15000, isCustom: false, description: '~15 KB — pixel art vibes' },
+  { id: 'iphone-photo', name: 'iPhone Photo', emoji: '', category: 'data', baseUnitValue: 5000000, isCustom: false, description: '~5 MB (HEIC)' },
+  { id: 'mp3-song', name: 'MP3 Song (avg)', emoji: '', category: 'data', baseUnitValue: 4000000, isCustom: false, description: '~4 MB (~4 min at 128 kbps)' },
+  { id: 'flac-song', name: 'FLAC Song (lossless)', emoji: '', category: 'data', baseUnitValue: 30000000, isCustom: false, description: '~30 MB — audiophile edition' },
+  { id: 'netflix-hour-sd', name: 'Netflix Hour (SD)', emoji: '', category: 'data', baseUnitValue: 700000000, isCustom: false, description: '~700 MB' },
+  { id: 'netflix-hour-4k', name: 'Netflix Hour (4K)', emoji: '', category: 'data', baseUnitValue: 7000000000, isCustom: false, description: '~7 GB' },
+  { id: 'youtube-cat-vid', name: 'YouTube Cat Video (2 min)', emoji: '', category: 'data', baseUnitValue: 20000000, isCustom: false, description: '~20 MB at 720p' },
+  { id: 'tiktok-video', name: 'TikTok Video (60s)', emoji: '', category: 'data', baseUnitValue: 15000000, isCustom: false, description: '~15 MB' },
+
+  // -- Games & software --
+  { id: 'nes-cartridge', name: 'NES Cartridge', emoji: '', category: 'data', baseUnitValue: 262144, isCustom: false, description: '~256 KB (Super Mario Bros)' },
+  { id: 'snes-cartridge', name: 'SNES Cartridge', emoji: '', category: 'data', baseUnitValue: 4194304, isCustom: false, description: '~4 MB max' },
+  { id: 'n64-cartridge', name: 'N64 Cartridge', emoji: '', category: 'data', baseUnitValue: 67108864, isCustom: false, description: '~64 MB max' },
+  { id: 'ps1-memory-card', name: 'PS1 Memory Card', emoji: '', category: 'data', baseUnitValue: 131072, isCustom: false, description: '~128 KB — guard it with your life' },
+  { id: 'minecraft-world', name: 'Minecraft World (avg)', emoji: '', category: 'data', baseUnitValue: 500000000, isCustom: false, description: '~500 MB' },
+  { id: 'cod-warzone', name: 'Call of Duty Install', emoji: '', category: 'data', baseUnitValue: 150000000000, isCustom: false, description: '~150 GB — RIP your hard drive' },
+  { id: 'windows95', name: 'Windows 95', emoji: '', category: 'data', baseUnitValue: 50000000, isCustom: false, description: '~50 MB — fit on floppies!' },
+  { id: 'windows11', name: 'Windows 11', emoji: '', category: 'data', baseUnitValue: 27000000000, isCustom: false, description: '~27 GB' },
+
+  // -- Absurd & fun --
+  { id: 'human-dna', name: 'Human Genome (text)', emoji: '', category: 'data', baseUnitValue: 750000000, isCustom: false, description: '~750 MB if stored as text' },
+  { id: 'human-brain', name: 'Human Brain (estimated)', emoji: '', category: 'data', baseUnitValue: 2500000000000000, isCustom: false, description: '~2.5 PB — allegedly' },
+  { id: 'internet-daily', name: 'Daily Internet Traffic', emoji: '', category: 'data', baseUnitValue: 4.5e+18, isCustom: false, description: '~4.5 exabytes/day' },
+  { id: 'google-search', name: 'One Google Search', emoji: '', category: 'data', baseUnitValue: 500000, isCustom: false, description: '~500 KB of data processed' },
+  { id: 'apollo-11-computer', name: 'Apollo 11 Computer (RAM)', emoji: '', category: 'data', baseUnitValue: 4096, isCustom: false, description: '~4 KB — got us to the moon' },
 ];
