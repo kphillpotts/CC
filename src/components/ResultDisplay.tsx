@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { Unit } from '../types/units';
 import { formatResult } from '../data/convert';
 import { generateNaturalLanguage } from '../data/naturalLanguage';
@@ -13,6 +13,18 @@ interface Props {
 
 export function ResultDisplay({ value, inputValue, fromUnit, toUnit }: Props) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [pulse, setPulse] = useState(false);
+  const prevUnitsRef = useRef(`${fromUnit.id}-${toUnit.id}`);
+
+  useEffect(() => {
+    const key = `${fromUnit.id}-${toUnit.id}`;
+    if (key !== prevUnitsRef.current) {
+      prevUnitsRef.current = key;
+      setPulse(true);
+      const timer = setTimeout(() => setPulse(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [fromUnit.id, toUnit.id]);
 
   if (inputValue === 0 || isNaN(inputValue)) {
     return null;
@@ -33,7 +45,7 @@ export function ResultDisplay({ value, inputValue, fromUnit, toUnit }: Props) {
   };
 
   return (
-    <div className="result-cards">
+    <div className={`result-cards ${pulse ? 'pulse' : ''}`}>
       <div className="result-card result-card--natural">
         <div className="result-card-text">{naturalText}</div>
         <button
