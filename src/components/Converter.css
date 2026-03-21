@@ -1,14 +1,28 @@
 .converter {
-  max-width: 480px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* ── Panels Row (From / Swap / To) ───────── */
+
+.panels-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+}
+
+.panels-row > .unit-picker {
+  flex: 1;
+  min-width: 0;
 }
 
 .converter-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 24px;
-  padding: 24px;
+  padding: 32px 40px;
   backdrop-filter: blur(20px);
 }
 
@@ -18,7 +32,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 4px 0;
+  padding: 0 8px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.swap-row .swap-line {
+  display: none;
 }
 
 .swap-line {
@@ -40,6 +60,11 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
+}
+
+.swap-button svg {
+  transform: rotate(90deg);
+  transition: transform 0.2s ease;
 }
 
 .swap-button:hover {
@@ -108,11 +133,35 @@
   color: #f87171;
 }
 
-@media (max-width: 480px) {
+/* ── Wide layout ─────────────────────────── */
+
+@media (min-width: 601px) {
+  .unit-picker-body {
+    padding: 24px 28px;
+  }
+}
+
+/* ── Narrow / vertical layout ────────────── */
+
+@media (max-width: 600px) {
   .converter {
+    max-width: 480px;
     padding: 0 16px;
   }
   .converter-card {
     padding: 20px;
+  }
+  .panels-row {
+    flex-direction: column;
+  }
+  .swap-row {
+    flex-direction: row;
+    padding: 4px 0;
+  }
+  .swap-row .swap-line {
+    display: block;
+  }
+  .swap-button svg {
+    transform: rotate(0deg);
   }
 }

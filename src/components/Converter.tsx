@@ -71,33 +71,35 @@ export function Converter() {
       <CategoryTabs selected={category} onChange={handleCategoryChange} />
 
       <div className="converter-card">
-        <UnitPicker
-          units={categoryUnits}
-          selected={fromUnit}
-          onChange={(u) => setFromId(u.id)}
-          label="From"
-          value={inputValue}
-          onValueChange={setInputValue}
-          showInput
-        />
+        <div className="panels-row">
+          <UnitPicker
+            units={categoryUnits}
+            selected={fromUnit}
+            onChange={(u) => setFromId(u.id)}
+            label="From"
+            value={inputValue}
+            onValueChange={setInputValue}
+            showInput
+          />
 
-        <div className="swap-row">
-          <div className="swap-line" />
-          <button className="swap-button" onClick={handleSwap} title="Swap units">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M4 2L4 14M4 14L1 11M4 14L7 11M12 14L12 2M12 2L9 5M12 2L15 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          <div className="swap-line" />
+          <div className="swap-row">
+            <div className="swap-line" />
+            <button className="swap-button" onClick={handleSwap} title="Swap units">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M4 2L4 14M4 14L1 11M4 14L7 11M12 14L12 2M12 2L9 5M12 2L15 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <div className="swap-line" />
+          </div>
+
+          <UnitPicker
+            units={categoryUnits}
+            selected={toUnit}
+            onChange={(u) => setToId(u.id)}
+            label="To"
+            value={numericValue ? formatResult(result) : ''}
+          />
         </div>
-
-        <UnitPicker
-          units={categoryUnits}
-          selected={toUnit}
-          onChange={(u) => setToId(u.id)}
-          label="To"
-          value={numericValue ? formatResult(result) : ''}
-        />
 
         <ResultDisplay
           value={result}
