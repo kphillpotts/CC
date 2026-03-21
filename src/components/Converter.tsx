@@ -23,7 +23,9 @@ export function Converter() {
   );
 
   const categoryUnits = useMemo(
-    () => allUnits.filter((u) => u.category === category),
+    () => allUnits
+      .filter((u) => u.category === category)
+      .sort((a, b) => a.name.localeCompare(b.name)),
     [allUnits, category]
   );
 
@@ -35,7 +37,9 @@ export function Converter() {
 
   const handleCategoryChange = (cat: Category) => {
     setCategory(cat);
-    const units = allUnits.filter((u) => u.category === cat);
+    const units = allUnits
+      .filter((u) => u.category === cat)
+      .sort((a, b) => a.name.localeCompare(b.name));
     setFromId(units[0]?.id ?? '');
     setToId(units[1]?.id ?? '');
     setInputValue('1');

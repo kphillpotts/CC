@@ -71,38 +71,6 @@
   width: 100%;
 }
 
-.unit-picker-select {
-  width: 100%;
-  padding: 8px 28px 8px 12px;
-  border: 1px solid var(--border-strong);
-  border-radius: 10px;
-  background-color: var(--surface);
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  cursor: pointer;
-  appearance: none;
-  transition: all 0.15s ease;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5l3 3 3-3' stroke='%239890a8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-}
-
-.unit-picker-select option {
-  background: var(--modal-bg);
-  color: var(--text-primary);
-}
-
-.unit-picker-select:hover {
-  background-color: var(--surface-hover);
-  border-color: var(--border-hover);
-}
-
-.unit-picker-select:focus {
-  outline: none;
-  border-color: var(--accent-border);
-}
-
 .unit-picker-description {
   font-size: 0.72rem;
   color: var(--text-faint);

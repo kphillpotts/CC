@@ -1,4 +1,5 @@
 import type { Unit } from '../types/units';
+import { SearchableSelect } from './SearchableSelect';
 import './UnitPicker.css';
 
 interface Props {
@@ -30,21 +31,11 @@ export function UnitPicker({ units, selected, onChange, label, value, onValueCha
           <div className="unit-picker-result">{value || '0'}</div>
         )}
         <div className="unit-picker-select-wrapper">
-          <select
-            className="unit-picker-select"
-            value={selected.id}
-            onChange={(e) => {
-              const unit = units.find((u) => u.id === e.target.value);
-              if (unit) onChange(unit);
-            }}
-          >
-            {units.map((unit) => (
-              <option key={unit.id} value={unit.id}>
-                {unit.name}
-                {unit.isCustom ? ' *' : ''}
-              </option>
-            ))}
-          </select>
+          <SearchableSelect
+            units={units}
+            selected={selected}
+            onChange={onChange}
+          />
         </div>
       </div>
       {selected.description && (
