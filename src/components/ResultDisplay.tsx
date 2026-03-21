@@ -49,20 +49,38 @@ export function ResultDisplay({ value, inputValue, fromUnit, toUnit }: Props) {
       <div className="result-card result-card--natural">
         <div className="result-card-text">{naturalText}</div>
         <button
-          className="copy-btn"
+          className={`copy-btn ${copiedId === 'natural' ? 'copied' : ''}`}
           onClick={() => handleCopy(naturalText, 'natural')}
         >
-          {copiedId === 'natural' ? 'Copied' : 'Copy'}
+          <span className="copy-btn-label">
+            {copiedId === 'natural' ? (
+              <>
+                <svg className="copy-tick" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Copied
+              </>
+            ) : 'Copy'}
+          </span>
         </button>
       </div>
 
       <div className="result-card result-card--precise">
         <div className="result-card-text">{preciseText}</div>
         <button
-          className="copy-btn"
+          className={`copy-btn ${copiedId === 'precise' ? 'copied' : ''}`}
           onClick={() => handleCopy(preciseText, 'precise')}
         >
-          {copiedId === 'precise' ? 'Copied' : 'Copy'}
+          <span className="copy-btn-label">
+            {copiedId === 'precise' ? (
+              <>
+                <svg className="copy-tick" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Copied
+              </>
+            ) : 'Copy'}
+          </span>
         </button>
       </div>
     </div>
