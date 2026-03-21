@@ -14,12 +14,12 @@
 
 .unit-picker-body {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 10px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
-  padding: 16px 20px;
+  padding: 18px 20px;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -29,16 +29,16 @@
 }
 
 .unit-picker-value {
-  flex: 1;
-  min-width: 0;
+  width: 100%;
   border: none;
   background: transparent;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #f4f0ff;
   outline: none;
   padding: 0;
   font-variant-numeric: tabular-nums;
+  text-align: center;
 }
 
 .unit-picker-value::placeholder {
@@ -56,29 +56,30 @@
 }
 
 .unit-picker-result {
-  flex: 1;
-  min-width: 0;
-  font-size: 2rem;
+  width: 100%;
+  font-size: 2.2rem;
   font-weight: 700;
   color: #c4b5fd;
   font-variant-numeric: tabular-nums;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-align: center;
 }
 
 .unit-picker-select-wrapper {
-  flex-shrink: 0;
+  width: 100%;
 }
 
 .unit-picker-select {
+  width: 100%;
   padding: 8px 28px 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
   font-size: 0.88rem;
   font-weight: 500;
-  color: rgba(226, 224, 234, 0.8);
+  color: rgba(226, 224, 234, 0.6);
   cursor: pointer;
   appearance: none;
   transition: all 0.15s ease;
@@ -88,8 +89,8 @@
 }
 
 .unit-picker-select:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .unit-picker-select:focus {
