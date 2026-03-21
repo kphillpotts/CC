@@ -36,6 +36,7 @@ export function UnitPicker({ units, selected, onChange, label, value, numericVal
         {showInput && onValueChange ? (
           <input
             type="number"
+            inputMode="decimal"
             className="unit-picker-value"
             value={value}
             onChange={handleChange}
