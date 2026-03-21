@@ -17,27 +17,27 @@
 }
 
 .result-card--natural {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+  background: var(--accent-surface);
+  border: 1px solid var(--accent-border);
 }
 
 .result-card--natural .result-card-text {
   font-size: 1rem;
   font-weight: 600;
-  color: #ddd6fe;
+  color: var(--accent-text);
   line-height: 1.45;
   letter-spacing: -0.01em;
 }
 
 .result-card--precise {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .result-card--precise .result-card-text {
   font-size: 0.82rem;
   font-weight: 500;
-  color: rgba(226, 224, 234, 0.4);
+  color: var(--text-muted);
   line-height: 1.4;
   font-variant-numeric: tabular-nums;
 }
@@ -55,26 +55,26 @@
 }
 
 .result-card--natural .copy-btn {
-  border: 1px solid rgba(139, 92, 246, 0.25);
-  background: rgba(139, 92, 246, 0.12);
-  color: #c4b5fd;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-dim);
+  color: var(--accent);
 }
 
 .result-card--natural .copy-btn:hover {
-  background: rgba(139, 92, 246, 0.22);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: var(--accent-surface);
+  border-color: var(--accent);
 }
 
 .result-card--precise .copy-btn {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(226, 224, 234, 0.35);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
 }
 
 .result-card--precise .copy-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: rgba(226, 224, 234, 0.5);
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  color: var(--text-secondary);
 }
 
 @keyframes fadeIn {

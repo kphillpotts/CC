@@ -9,23 +9,23 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(226, 224, 234, 0.35);
+  color: var(--text-muted);
 }
 
 .unit-picker-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px 20px;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .unit-picker-body:focus-within {
-  border-color: rgba(139, 92, 246, 0.3);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent-border);
+  background: var(--surface-active);
 }
 
 .unit-picker-value {
@@ -34,7 +34,7 @@
   background: transparent;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #f4f0ff;
+  color: var(--input-number);
   outline: none;
   padding: 0;
   font-variant-numeric: tabular-nums;
@@ -42,7 +42,7 @@
 }
 
 .unit-picker-value::placeholder {
-  color: rgba(226, 224, 234, 0.2);
+  color: var(--text-faint);
 }
 
 /* Hide number input spinners */
@@ -59,7 +59,7 @@
   width: 100%;
   font-size: 2.2rem;
   font-weight: 700;
-  color: #c4b5fd;
+  color: var(--result-number);
   font-variant-numeric: tabular-nums;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -74,32 +74,32 @@
 .unit-picker-select {
   width: 100%;
   padding: 8px 28px 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-strong);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
+  background-color: var(--surface);
   font-size: 0.88rem;
   font-weight: 500;
-  color: rgba(226, 224, 234, 0.6);
+  color: var(--text-secondary);
   cursor: pointer;
   appearance: none;
   transition: all 0.15s ease;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5l3 3 3-3' stroke='rgba(226,224,234,0.4)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M2 3.5l3 3 3-3' stroke='%239890a8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
 }
 
 .unit-picker-select:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
+  background-color: var(--surface-hover);
+  border-color: var(--border-hover);
 }
 
 .unit-picker-select:focus {
   outline: none;
-  border-color: rgba(139, 92, 246, 0.4);
+  border-color: var(--accent-border);
 }
 
 .unit-picker-description {
   font-size: 0.72rem;
-  color: rgba(226, 224, 234, 0.25);
+  color: var(--text-faint);
   padding-left: 2px;
 }

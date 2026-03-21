@@ -4,19 +4,91 @@
   box-sizing: border-box;
 }
 
+/* ── Dark Theme (default) ─────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg: #0f0b1a;
+  --bg-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+
+  --text-primary: #f4f0ff;
+  --text-secondary: rgba(226, 224, 234, 0.5);
+  --text-muted: rgba(226, 224, 234, 0.35);
+  --text-faint: rgba(226, 224, 234, 0.2);
+
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --surface-active: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.1);
+
+  --accent: #c4b5fd;
+  --accent-dim: rgba(139, 92, 246, 0.15);
+  --accent-surface: rgba(139, 92, 246, 0.08);
+  --accent-border: rgba(139, 92, 246, 0.3);
+  --accent-text: #ddd6fe;
+
+  --result-number: #c4b5fd;
+  --input-number: #f4f0ff;
+
+  --modal-bg: #1a1625;
+  --overlay: rgba(0, 0, 0, 0.6);
+
+  --select-chevron: rgba(226, 224, 234, 0.4);
+  --selection: rgba(139, 92, 246, 0.3);
+}
+
+/* ── Light Theme ──────────────────────────── */
+[data-theme="light"] {
+  --bg: #faf8ff;
+  --bg-image:
+    radial-gradient(ellipse 90% 70% at 50% -10%, rgba(139, 92, 246, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 100% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 0% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 60% 100%, rgba(245, 158, 11, 0.06) 0%, transparent 40%);
+
+  --text-primary: #1e1535;
+  --text-secondary: #5c5470;
+  --text-muted: #8d849e;
+  --text-faint: #c2bccf;
+
+  --surface: rgba(255, 255, 255, 0.7);
+  --surface-hover: rgba(255, 255, 255, 0.9);
+  --surface-active: rgba(255, 255, 255, 0.8);
+  --border: rgba(139, 92, 246, 0.1);
+  --border-hover: rgba(139, 92, 246, 0.18);
+  --border-strong: rgba(139, 92, 246, 0.12);
+
+  --accent: #7c3aed;
+  --accent-dim: rgba(124, 58, 237, 0.1);
+  --accent-surface: rgba(124, 58, 237, 0.06);
+  --accent-border: rgba(124, 58, 237, 0.22);
+  --accent-text: #5b21b6;
+
+  --result-number: #7c3aed;
+  --input-number: #1e1535;
+
+  --modal-bg: #ffffff;
+  --overlay: rgba(100, 70, 150, 0.2);
+
+  --select-chevron: #8d849e;
+  --selection: rgba(124, 58, 237, 0.15);
+}
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0f0b1a;
-  background-image:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 58, 237, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 50%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  background-color: var(--bg);
+  background-image: var(--bg-image);
   background-attachment: fixed;
   min-height: 100vh;
-  color: #e2e0ea;
+  color: var(--text-secondary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -34,5 +106,5 @@ input, select {
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.3);
+  background: var(--selection);
 }

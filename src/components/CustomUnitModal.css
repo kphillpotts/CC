@@ -1,7 +1,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--overlay);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -12,8 +12,8 @@
 }
 
 .modal-content {
-  background: #1a1625;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--modal-bg);
+  border: 1px solid var(--border-strong);
   border-radius: 20px;
   padding: 28px;
   max-width: 420px;
@@ -31,7 +31,7 @@
   background: none;
   border: none;
   font-size: 1rem;
-  color: rgba(226, 224, 234, 0.3);
+  color: var(--text-muted);
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 6px;
@@ -39,20 +39,20 @@
 }
 
 .modal-close:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(226, 224, 234, 0.6);
+  background: var(--surface-hover);
+  color: var(--text-secondary);
 }
 
 .modal-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #f4f0ff;
+  color: var(--text-primary);
   margin: 0 0 4px;
 }
 
 .modal-subtitle {
   font-size: 0.85rem;
-  color: rgba(226, 224, 234, 0.35);
+  color: var(--text-muted);
   margin: 0 0 24px;
 }
 
@@ -84,7 +84,7 @@
 .form-group label {
   font-size: 0.72rem;
   font-weight: 600;
-  color: rgba(226, 224, 234, 0.35);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -92,22 +92,22 @@
 .form-group input,
 .form-group select {
   padding: 10px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-strong);
   border-radius: 10px;
   font-size: 0.9rem;
-  color: #f4f0ff;
+  color: var(--text-primary);
   transition: border-color 0.15s ease;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--surface);
 }
 
 .form-group input::placeholder {
-  color: rgba(226, 224, 234, 0.2);
+  color: var(--text-faint);
 }
 
 .form-group input:focus,
 .form-group select:focus {
   outline: none;
-  border-color: rgba(139, 92, 246, 0.4);
+  border-color: var(--accent-border);
 }
 
 .emoji-input {
@@ -118,7 +118,7 @@
 
 .form-hint {
   font-size: 0.72rem;
-  color: rgba(226, 224, 234, 0.25);
+  color: var(--text-faint);
 }
 
 .modal-actions {
@@ -130,10 +130,10 @@
 .btn-cancel {
   flex: 1;
   padding: 11px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-strong);
   border-radius: 12px;
   background: transparent;
-  color: rgba(226, 224, 234, 0.5);
+  color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
@@ -141,26 +141,25 @@
 }
 
 .btn-cancel:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: var(--surface);
+  border-color: var(--border-hover);
 }
 
 .btn-save {
   flex: 1;
   padding: 11px;
-  border: none;
+  border: 1px solid var(--accent-border);
   border-radius: 12px;
-  background: rgba(139, 92, 246, 0.2);
-  color: #c4b5fd;
+  background: var(--accent-dim);
+  color: var(--accent);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s;
-  border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
 .btn-save:hover {
-  background: rgba(139, 92, 246, 0.3);
+  background: var(--accent-surface);
 }
 
 @keyframes fadeIn {
