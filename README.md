@@ -1,73 +1,40 @@
-# React + TypeScript + Vite
+# Curious Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Ever wondered how many bananas tall the Eiffel Tower is? Or how many floppy disks it takes to store a cat video?**
 
-Currently, two official plugins are available:
+Curious Converter is a unit conversion app with a twist. Alongside the standard stuff (kilograms, metres, litres), it lets you convert into delightfully absurd units like elephants, school buses, Olympic swimming pools, NES cartridges, and War and Peace.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**[Try it live](https://kphillpotts.github.io/CC/)**
 
-## React Compiler
+## What You Can Convert
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Weight** — from grams to blue whales, Big Macs to cruise ships
+- **Length** — from millimetres to football fields, bananas to the distance to the Moon
+- **Volume** — from teaspoons to Olympic swimming pools, shot glasses to hot tubs
+- **Area** — from Post-it Notes to Central Parks, yoga mats to Texas
+- **Time** — from seconds to microwave minutes, dog years to geological epochs
+- **Speed** — from walking pace to the speed of light, garden snails to Concordes
+- **Data** — from punch cards to Petabytes, tweets to the Library of Congress
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Surprise Me** — picks a random, interesting conversion so you always learn something weird
+- **Searchable unit picker** — quickly find any unit across 300+ options
+- **Custom units** — create and save your own absurd conversions
+- **Animated results** — numbers roll smoothly, buttons bounce, and the UI feels alive
+- **Sound effects** — subtle audio feedback (toggle-able) for swaps, copies, and surprises
+- **Dark mode** — because even silly conversions deserve a moody aesthetic
+- **Responsive layout** — panels sit side by side on wide screens, stack on mobile
+- **Copy to clipboard** — share your favourite conversions with a tap
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Examples of Things You Can Discover
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- 1 African Elephant = ~4,082 Chihuahuas
+- 1 Marathon = ~46,145 Bananas (laid end to end)
+- 1 Netflix Hour (4K) = ~4,861 Floppy Disks
+- 1 Human Brain = ~1,694,915 CD-ROMs (estimated)
+- 1 Olympic Swimming Pool = ~9,090,909 Teaspoons
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Made with curiosity and questionable math.
