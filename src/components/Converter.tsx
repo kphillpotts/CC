@@ -52,7 +52,11 @@ const initialUnits = BUILT_IN_UNITS
   .sort((a, b) => a.name.localeCompare(b.name));
 const initialPair = pickInterestingPair(initialUnits);
 
-export function Converter() {
+interface ConverterProps {
+  playSound: (name: 'swap' | 'surprise' | 'copy' | 'click') => void;
+}
+
+export function Converter({ playSound }: ConverterProps) {
   const [category, setCategory] = useState<Category>(initialCategory);
   const [inputValue, setInputValue] = useState<string>('1');
   const [fromId, setFromId] = useState<string>(initialPair.fromId);
@@ -80,6 +84,7 @@ export function Converter() {
   const result = fromUnit && toUnit ? convert(numericValue, fromUnit, toUnit) : 0;
 
   const handleCategoryChange = (cat: Category) => {
+    playSound('click');
     setCategory(cat);
     const units = allUnits
       .filter((u) => u.category === cat)
@@ -91,6 +96,7 @@ export function Converter() {
   };
 
   const handleSwap = () => {
+    playSound('swap');
     setFromId(toUnit.id);
     setToId(fromUnit.id);
     setInputValue(formatResult(result));
@@ -110,6 +116,7 @@ export function Converter() {
 
   const handleSurprise = () => {
     if (categoryUnits.length < 2) return;
+    playSound('surprise');
     const pair = pickInterestingPair(categoryUnits);
     setFromId(pair.fromId);
     setToId(pair.toId);
@@ -158,6 +165,7 @@ export function Converter() {
           inputValue={numericValue}
           fromUnit={fromUnit}
           toUnit={toUnit}
+          onCopy={() => playSound('copy')}
         />
       </div>
 

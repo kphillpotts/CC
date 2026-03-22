@@ -9,9 +9,10 @@ interface Props {
   inputValue: number;
   fromUnit: Unit;
   toUnit: Unit;
+  onCopy?: () => void;
 }
 
-export function ResultDisplay({ value, inputValue, fromUnit, toUnit }: Props) {
+export function ResultDisplay({ value, inputValue, fromUnit, toUnit, onCopy }: Props) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [pulse, setPulse] = useState(false);
   const prevUnitsRef = useRef(`${fromUnit.id}-${toUnit.id}`);
@@ -41,6 +42,7 @@ export function ResultDisplay({ value, inputValue, fromUnit, toUnit }: Props) {
   const handleCopy = async (text: string, id: string) => {
     await navigator.clipboard.writeText(text);
     setCopiedId(id);
+    onCopy?.();
     setTimeout(() => setCopiedId(null), 2000);
   };
 
