@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { Unit } from '../types/units';
 import { formatResult } from '../data/convert';
-import { generateNaturalLanguage } from '../data/naturalLanguage';
+import { generateNaturalLanguage, pluralName } from '../data/naturalLanguage';
 import { shareConversion } from '../utils/shareCard';
 import './ResultDisplay.css';
 
@@ -34,11 +34,11 @@ export function ResultDisplay({ value, inputValue, fromUnit, toUnit, onCopy }: P
 
   const formattedInput = formatResult(inputValue);
   const formattedResult = formatResult(value);
-  const inputPlural = inputValue !== 1;
-  const resultPlural = value !== 1;
+  const fromName = inputValue === 1 ? fromUnit.name : pluralName(fromUnit.name, inputValue);
+  const toName = value === 1 ? toUnit.name : pluralName(toUnit.name, value);
 
-  const preciseText = `${formattedInput} ${fromUnit.name}${inputPlural ? 's' : ''} = ${formattedResult} ${toUnit.name}${resultPlural ? 's' : ''}`;
-  const naturalText = generateNaturalLanguage(value, toUnit.name, toUnit.category);
+  const preciseText = `${formattedInput} ${fromName} = ${formattedResult} ${toName}`;
+  const naturalText = generateNaturalLanguage(value, inputValue, fromUnit.name, toUnit.name, fromUnit.category);
 
   const [sharing, setSharing] = useState(false);
 
