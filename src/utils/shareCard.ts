@@ -48,79 +48,91 @@ function drawCard(data: ShareCardData): HTMLCanvasElement {
   canvas.width = W;
   canvas.height = H;
   const ctx = canvas.getContext('2d')!;
+  const font = '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
-  // Background gradient
-  const bg = ctx.createLinearGradient(0, 0, W, H);
-  bg.addColorStop(0, '#6c3ce0');
-  bg.addColorStop(0.5, '#8b5cf6');
-  bg.addColorStop(1, '#c084fc');
-  ctx.fillStyle = bg;
+  // White outer background
+  ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, W, H);
 
-  // Subtle pattern dots
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.04)';
-  for (let x = 0; x < W; x += 30) {
-    for (let y = 0; y < H; y += 30) {
+  // Gradient inner card
+  const cardX = PADDING;
+  const cardY = PADDING;
+  const cardW = W - PADDING * 2;
+  const cardH = H - PADDING * 2;
+  roundRect(ctx, cardX, cardY, cardW, cardH, 28);
+
+  const grad = ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
+  grad.addColorStop(0, '#6c3ce0');
+  grad.addColorStop(0.5, '#8b5cf6');
+  grad.addColorStop(1, '#c084fc');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Subtle dot texture on card
+  ctx.save();
+  roundRect(ctx, cardX, cardY, cardW, cardH, 28);
+  ctx.clip();
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
+  for (let x = cardX; x < cardX + cardW; x += 28) {
+    for (let y = cardY; y < cardY + cardH; y += 28) {
       ctx.beginPath();
-      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.arc(x, y, 1.5, 0, Math.PI * 2);
       ctx.fill();
     }
   }
+  ctx.restore();
 
-  // Main card
-  const cardX = PADDING - 20;
-  const cardY = 100;
-  const cardW = W - (PADDING - 20) * 2;
-  const cardH = H - 200;
-  roundRect(ctx, cardX, cardY, cardW, cardH, 24);
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
+  // Measure all text to vertically centre it within the card
+  const innerPadding = 48;
+  const maxTextWidth = cardW - innerPadding * 2;
+  const preciseLineHeight = 52;
+  const naturalLineHeight = 36;
+  const gap = 20;
 
-  // Category pill
-  const catInfo = CATEGORY_INFO[data.category];
-  const catLabel = `${catInfo.emoji} ${catInfo.label}`;
-  ctx.font = '600 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-  const catWidth = ctx.measureText(catLabel).width + 32;
-  const catX = (W - catWidth) / 2;
-  const catY = cardY + 30;
-  roundRect(ctx, catX, catY, catWidth, 38, 19);
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
-  ctx.fill();
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.textBaseline = 'middle';
-  ctx.textAlign = 'center';
-  ctx.fillText(catLabel, W / 2, catY + 19);
+  ctx.font = `800 42px ${font}`;
+  const preciseLines = wrapText(ctx, data.preciseText, maxTextWidth);
 
-  // Main conversion text (precise)
-  ctx.font = '800 42px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+  ctx.font = `500 26px ${font}`;
+  const naturalLines = wrapText(ctx, data.naturalText, maxTextWidth);
+
+  const totalTextHeight =
+    preciseLines.length * preciseLineHeight +
+    gap +
+    naturalLines.length * naturalLineHeight;
+
+  const textStartY = cardY + (cardH - totalTextHeight) / 2;
+
+  // Main conversion text
+  ctx.font = `800 42px ${font}`;
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'top';
-  const maxTextWidth = cardW - 80;
-  const preciseLines = wrapText(ctx, data.preciseText, maxTextWidth);
-  const preciseStartY = catY + 60;
   for (let i = 0; i < preciseLines.length; i++) {
-    ctx.fillText(preciseLines[i], W / 2, preciseStartY + i * 52);
+    ctx.fillText(preciseLines[i], W / 2, textStartY + i * preciseLineHeight);
   }
 
   // Natural language text
-  const naturalY = preciseStartY + preciseLines.length * 52 + 16;
-  ctx.font = '500 26px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-  const naturalLines = wrapText(ctx, data.naturalText, maxTextWidth);
+  const naturalY = textStartY + preciseLines.length * preciseLineHeight + gap;
+  ctx.font = `500 26px ${font}`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
   for (let i = 0; i < naturalLines.length; i++) {
-    ctx.fillText(naturalLines[i], W / 2, naturalY + i * 36);
+    ctx.fillText(naturalLines[i], W / 2, naturalY + i * naturalLineHeight);
   }
 
-  // Branding
-  ctx.font = '700 24px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-  ctx.textAlign = 'center';
+  // Branding — bottom left of card
+  ctx.font = `700 20px ${font}`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.textAlign = 'left';
   ctx.textBaseline = 'bottom';
-  ctx.fillText('Curious Converter', W / 2, H - 30);
+  ctx.fillText('Curious Converter', cardX + innerPadding, cardY + cardH - 24);
+
+  // Category — bottom right of card
+  const catInfo = CATEGORY_INFO[data.category];
+  ctx.font = `600 18px ${font}`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText(catInfo.label.toUpperCase(), cardX + cardW - innerPadding, cardY + cardH - 24);
 
   return canvas;
 }

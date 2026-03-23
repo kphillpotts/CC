@@ -26,6 +26,7 @@ Curious Converter is a unit conversion app with a twist. Alongside the standard 
 - **Dark mode** — because even silly conversions deserve a moody aesthetic
 - **Responsive layout** — panels sit side by side on wide screens, stack on mobile
 - **Copy to clipboard** — share your favourite conversions with a tap
+- **Share as image** — generates a styled card you can send via iMessage, WhatsApp, or save as a PNG
 
 ## Examples of Things You Can Discover
 
