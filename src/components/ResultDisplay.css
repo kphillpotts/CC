@@ -77,6 +77,37 @@
   color: var(--text-secondary);
 }
 
+/* ── Share button ────────────────────────── */
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.share-btn:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-surface);
+  border-style: solid;
+}
+
+.share-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }

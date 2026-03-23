@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import type { Unit } from '../types/units';
 import { formatResult } from '../data/convert';
 import { generateNaturalLanguage } from '../data/naturalLanguage';
+import { shareConversion } from '../utils/shareCard';
 import './ResultDisplay.css';
 
 interface Props {
@@ -39,11 +40,27 @@ export function ResultDisplay({ value, inputValue, fromUnit, toUnit, onCopy }: P
   const preciseText = `${formattedInput} ${fromUnit.name}${inputPlural ? 's' : ''} = ${formattedResult} ${toUnit.name}${resultPlural ? 's' : ''}`;
   const naturalText = generateNaturalLanguage(value, toUnit.name, toUnit.category);
 
+  const [sharing, setSharing] = useState(false);
+
   const handleCopy = async (text: string, id: string) => {
     await navigator.clipboard.writeText(text);
     setCopiedId(id);
     onCopy?.();
     setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleShare = async () => {
+    setSharing(true);
+    try {
+      await shareConversion({
+        preciseText,
+        naturalText,
+        category: fromUnit.category,
+      });
+    } catch {
+      // User cancelled share or it failed — ignore
+    }
+    setSharing(false);
   };
 
   return (
@@ -85,6 +102,13 @@ export function ResultDisplay({ value, inputValue, fromUnit, toUnit, onCopy }: P
           </span>
         </button>
       </div>
+
+      <button className="share-btn" onClick={handleShare} disabled={sharing}>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M4.5 8L9.5 5.5M4.5 6L9.5 8.5M5 7A2 2 0 1 1 1 7A2 2 0 0 1 5 7ZM13 4A2 2 0 1 1 9 4A2 2 0 0 1 13 4ZM13 10A2 2 0 1 1 9 10A2 2 0 0 1 13 10Z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+        {sharing ? 'Creating...' : 'Share as image'}
+      </button>
     </div>
   );
 }
