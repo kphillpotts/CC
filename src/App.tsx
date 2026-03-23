@@ -1,6 +1,5 @@
 import { Converter } from './components/Converter';
-import { ThemeToggle } from './components/ThemeToggle';
-import { SoundToggle } from './components/SoundToggle';
+import { SettingsMenu } from './components/SettingsMenu';
 import { useTheme } from './hooks/useTheme';
 import { useSounds } from './hooks/useSounds';
 import './App.css';
@@ -26,8 +25,12 @@ function App() {
         <p>Made with curiosity and questionable math</p>
       </footer>
 
-      <SoundToggle enabled={soundEnabled} onToggle={toggleSound} />
-      <ThemeToggle theme={theme} onToggle={toggle} />
+      <SettingsMenu
+        theme={theme}
+        onToggleTheme={toggle}
+        soundEnabled={soundEnabled}
+        onToggleSound={toggleSound}
+      />
     </div>
   );
 }
